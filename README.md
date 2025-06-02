@@ -1,45 +1,35 @@
-# Application Template
-This is a template for you to start working within a Java environment. _Substitute this description for a description of your application_.
-**_Please feel free to add new sections or delete not-used sections_**.
+# Angular Component Update Playground
+
+This repository serves as a playground to practice Angular development and solve common issues that arise in Angular projects. It focuses on testing Angular functionalities and component interactions.
 
 ## 1) What is this repository for?
 
 ### 1.1) Quick summary
-Version: `0.1-SNAPSHOT`
+Version: `1.0.0`
 
-Detailed description of your app.
+This is an Angular playground project designed to practice and test Angular functionalities, particularly focusing on:
+- Dynamic data loading from JSON files
+- PrimeNG components (p-table, p-overlayPanel)
+- Recursive component rendering
+- Component communication and data binding
 
-### 1.2) Disclosure
-_We hereby certify that, to the best of our knowledge,
-neither we nor any individual or entity with whom or which I have a significant working
-relationship have (has) received something of value from a commercial party related directly or
-indirectly to the subject of this project..._
-
-## 2) How do I get set up? ###
+## 2) How do I get set up?
 
 ### 2.1) Summary of set up
-The technologies the project is using.
+The technologies this project uses:
 
 #### 2.1.1) Development environment
-- DataBase:			                    `H2` (_embedded_)
-- [JDK](https://openjdk.org/) version: 	`1.17`
-- [Maven](https://maven.apache.org/download.cgi)
-- [Docker](https://www.docker.com/products/docker-desktop/)
+- [Node.js](https://nodejs.org/) version: `18+`
+- [Angular CLI](https://angular.io/cli)
+- [PrimeNG](https://primeng.org/) - UI components library
 
 #### 2.1.2) Project Dependencies
-This library uses:
-- **Lombok** to log errors and general logs.
-    - **Slf4j**
-- **Spring boot**
-  - **Spring 6**
-    - **Reactive Spring Web-flux WebClient**. for Reactive REST Calls.
-    - Spring > **Jackson**
-    - **JKube** A Kubernetes Maven plugin to generate Docker Images.
-  - **JUnit5**
-    - **Selenium-Jupiter**
-- **White_SeleniumFramework**. Utilities and Base Automation Scenario
-- **Hibernate**
-- **H2 DataBase**
+This project uses:
+- **Angular 17+** - Frontend framework
+- **PrimeNG** - UI component library for tables and overlays
+- **TypeScript** - Programming language
+- **RxJS** - Reactive programming
+- **JSON** - Static data files for simulation
 
 
 ### 2.2) Configuration Steps
@@ -47,61 +37,69 @@ This library uses:
 _Please execute the `main-protection-win.bat` file in the root directory of the project
 to protect the main branch from being corrupted unintentionally._
 
-You will require all the Development elements in your environment.
+You will need Node.js and Angular CLI installed on your system.
 
-An IDE with Maven support is suggested for you to make any modifications to the code.
-#### 2.2.2) Database configuration
+Install Angular CLI globally:
+```bash
+npm install -g @angular/cli
+```
 
-You don't need to set up a DataBase for the project to connect to.
-There is an H2 database already embedded in the project, but if you want to
-you can configure a separate one and switch the database connection, 
-you will need to specify the connection information in the `application.properties` file:
+#### 2.2.2) Project Setup
+1. Clone the repository
+2. Navigate to project directory
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Run the development server:
+   ```bash
+   ng serve
+   ```
 
-	...\src\main\resources\application.properties
-
-	url=		jdbc:oracle:oci:@//localhost:1521/mydb
-	username=	sa
-	password=	sa
+The application will be available at `http://localhost:4200/`
 
 ## 3) How to Deploy?
-use [maven](https://spring.io/guides/gs/maven/) to compile ~~and run~~(_you can configure the auto launch of a desktop app_) the project.
 
-You can use this to (_clean, build, test, and_) **`RUN`** the project with a single command: 
-    
-    mvn install
+### Development Server
+Run the development server:
+```bash
+ng serve
+```
+Navigate to `http://localhost:4200/`. The application will automatically reload if you change any source files.
 
-Maven is no longer configured to create the docker image on the package goal, so you can create the image using:
+### Build
+Run the build command to create a production build:
+```bash
+ng build
+```
+The build artifacts will be stored in the `dist/` directory.
 
-	mvn package k8s:build
-After that, you can run the image (and project) by running the image in Docker with
+### Running Tests
+Execute unit tests:
+```bash
+ng test
+```
 
-    docker compose --project-directory src\main\docker up
-This should create a docker image and run the project.
+Execute end-to-end tests:
+```bash
+ng e2e
+```
+## 4) Project Structure and Features
 
-    mvn clean package k8s:build -e
-    docker compose --project-directory src\main\docker up
-    .
+### 4.1) Main Features
+This playground demonstrates:
+- **Dynamic JSON Data Loading**: Loading static JSON files that simulate dynamic data
+- **PrimeNG Table (p-table)**: Displaying data in a responsive table format
+- **Overlay Panels (p-overlayPanel)**: Pop-up panels triggered by button clicks
+- **Recursive Components**: Components that can render themselves within overlay panels
+- **Multiple Overlays**: Support for opening several pop-ups simultaneously
 
-Maven could also be configured to run the Docker Image on its own on the **`INSTALL`** phase/goal 
-after the creation of the image on the package goal.
-After configuration, use this as a quick go-to command: 
-    
-    mvn clean install -DskipTests
-
-If the project is running correctly
-## 4) What are the Contribution guidelines?
-
-#### 4.1) Writing tests.
-
-_There is a sample of Unit testing, Integration testing, Functional testing, and a single non-spring Testing._
-
-#### 4.2) Code review.
-
-_Request if needed._
-
-#### 4.3) Other guidelines.
-
-_Please ask for the code standard to use as a guideline and reflect it in the project._
+### 4.2) Component Architecture
+The main component includes:
+- A primary table displaying JSON data
+- Action buttons in table cells that trigger overlay panels
+- Overlay panels containing recursive instances of the same component
+- Subsection data filtering for nested components
 
 ## 5) Who do I talk to?
 
