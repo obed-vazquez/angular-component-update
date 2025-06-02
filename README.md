@@ -24,13 +24,13 @@ indirectly to the subject of this project._
 The technologies the project is using.
 
 #### 2.1.1) Development environment
-- [Node.js](https://nodejs.org/) version: `18.x or 20.x`
-- [Angular CLI](https://angular.io/cli): `^20.0.0`
-- [TypeScript](https://www.typescriptlang.org/): `~5.8.2`
+- [Node.js](https://nodejs.org/) version: `20.9.x or higher` (minimum requirement for Angular 17)
+- [Angular CLI](https://angular.io/cli): `^17.3.10`
+- [TypeScript](https://www.typescriptlang.org/): `~5.4.2`
 
 #### 2.1.2) Project Dependencies
 This Angular application uses:
-- **Angular 20** - Latest Angular framework
+- **Angular 17** - Stable Angular framework with Node.js compatibility
 - **PrimeNG** - UI component library for Angular
   - **PrimeIcons** - Icon set for PrimeNG
 - **RxJS** - Reactive programming library

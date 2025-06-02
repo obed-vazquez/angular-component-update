@@ -8,6 +8,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'app-data-table',
+  standalone: true,
   imports: [CommonModule, TableModule, ButtonModule, OverlayPanelModule],
   templateUrl: './data-table.html',
   styleUrl: './data-table.scss'

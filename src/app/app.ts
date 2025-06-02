@@ -4,6 +4,7 @@ import { DataTableComponent } from './data-table/data-table';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet, DataTableComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
