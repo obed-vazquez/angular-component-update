@@ -1,0 +1,81 @@
+[
+  {
+    "id": 1,
+    "name": "Product Group A",
+    "category": "Electronics",
+    "status": "Active",
+    "items": [
+      {
+        "id": 11,
+        "name": "Smartphone",
+        "price": 599.99,
+        "stock": 50,
+        "details": [
+          { "id": 111, "property": "Color", "value": "Black" },
+          { "id": 112, "property": "Storage", "value": "128GB" },
+          { "id": 113, "property": "RAM", "value": "8GB" }
+        ]
+      },
+      {
+        "id": 12,
+        "name": "Laptop",
+        "price": 1299.99,
+        "stock": 25,
+        "details": [
+          { "id": 121, "property": "Processor", "value": "Intel i7" },
+          { "id": 122, "property": "RAM", "value": "16GB" },
+          { "id": 123, "property": "Storage", "value": "512GB SSD" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Product Group B",
+    "category": "Home & Garden",
+    "status": "Active",
+    "items": [
+      {
+        "id": 21,
+        "name": "Garden Chair",
+        "price": 89.99,
+        "stock": 15,
+        "details": [
+          { "id": 211, "property": "Material", "value": "Wood" },
+          { "id": 212, "property": "Color", "value": "Brown" },
+          { "id": 213, "property": "Weight", "value": "5kg" }
+        ]
+      },
+      {
+        "id": 22,
+        "name": "Outdoor Table",
+        "price": 249.99,
+        "stock": 8,
+        "details": [
+          { "id": 221, "property": "Material", "value": "Teak" },
+          { "id": 222, "property": "Dimensions", "value": "120x80cm" },
+          { "id": 223, "property": "Weather Resistant", "value": "Yes" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Product Group C",
+    "category": "Books",
+    "status": "Active",
+    "items": [
+      {
+        "id": 31,
+        "name": "Angular Guide",
+        "price": 39.99,
+        "stock": 100,
+        "details": [
+          { "id": 311, "property": "Pages", "value": "450" },
+          { "id": 312, "property": "Author", "value": "Tech Expert" },
+          { "id": 313, "property": "Language", "value": "English" }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,57 @@
+<div class="data-table-container">
+  <h3 *ngIf="level === 'group'">Product Groups</h3>
+  <h4 *ngIf="level === 'item'">Items</h4>
+  <h5 *ngIf="level === 'detail'">Details</h5>
+
+  <p-table 
+    [value]="displayData" 
+    [tableStyle]="{'min-width': '50rem'}"
+    [paginator]="displayData.length > 10" 
+    [rows]="10"
+    [responsive]="true">
+    
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let col of getColumns()">{{col.header}}</th>
+      </tr>
+    </ng-template>
+    
+    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+      <tr>
+        <td *ngFor="let col of getColumns()">
+          <span *ngIf="col.field !== 'actions' && col.field !== 'price'">{{rowData[col.field]}}</span>
+          <span *ngIf="col.field === 'price'">\${{rowData[col.field]}}</span>
+          
+          <div *ngIf="col.field === 'actions' && hasSubData(rowData)">
+            <p-button 
+              label="View Details" 
+              icon="pi pi-eye" 
+              severity="info"
+              size="small"
+              (onClick)="op.toggle($event)"
+              #btn>
+            </p-button>
+            
+            <p-overlayPanel #op>
+              <div class="overlay-content">
+                <app-data-table 
+                  [data]="getSubData(rowData.id)"
+                  [level]="getNextLevel()"
+                  [parentId]="rowData.id">
+                </app-data-table>
+              </div>
+            </p-overlayPanel>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td [attr.colspan]="getColumns().length">
+          No data found.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
