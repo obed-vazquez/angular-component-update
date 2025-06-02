@@ -1,13 +1,16 @@
-# Application Template
-This is a template for you to start working within a Java environment. _Substitute this description for a description of your application_.
-**_Please feel free to add new sections or delete not-used sections_**.
+# Angular Component Update & Development Platform
+This repository serves as a comprehensive development platform with broader objectives for modern web application development. **Initially, we are focusing on Angular component updates and recursive component implementations** to establish a solid foundation for future enhancements.
+
+_The current implementation demonstrates recursive p-table and p-overlayPanel components with PrimeNG integration, serving as the first milestone in our development roadmap._
 
 ## 1) What is this repository for?
 
 ### 1.1) Quick summary
 Version: `0.1-SNAPSHOT`
 
-Detailed description of your app.
+**Current Focus: Angular Component Development**
+
+Detailed description of the Angular playground project featuring recursive components, PrimeNG integration, and dynamic data visualization.
 
 ### 1.2) Disclosure
 _We hereby certify that, to the best of our knowledge,
