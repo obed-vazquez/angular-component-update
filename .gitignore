@@ -86,3 +86,35 @@ Thumbs.db
 *.csv
 /.vscode/settings.json
 /Screenshots/
+
+# Angular specific files #
+##########################
+# Compiled output
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.c9/
+*.launch
+*.sublime-workspace
+
+# Additional Visual Studio Code settings
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings

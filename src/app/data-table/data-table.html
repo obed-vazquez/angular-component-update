@@ -1,0 +1,66 @@
+<div class="data-table-container">
+  <h3 *ngIf="level === 'group'">Product Groups</h3>
+  <h4 *ngIf="level === 'item'">Items</h4>
+  <h5 *ngIf="level === 'detail'">Details</h5>
+
+  <p-table 
+    [value]="displayData" 
+    [tableStyle]="{'min-width': '50rem'}"
+    [paginator]="displayData.length > 10" 
+    [rows]="10"
+    [responsive]="true">
+    
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let col of getColumns()">{{col.header}}</th>
+      </tr>
+    </ng-template>
+    
+    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+      <tr>
+        <td *ngFor="let col of getColumns()">
+          <span *ngIf="col.field !== 'actions' && col.field !== 'price'">{{rowData[col.field]}}</span>
+          <span *ngIf="col.field === 'price'">${{rowData[col.field]}}</span>
+          
+          <div *ngIf="col.field === 'actions' && hasSubData(rowData)" class="action-cell">
+            <p-button 
+              [label]="isOverlayOpen(rowData.id) ? 'Hide Details' : 'View Details'"
+              [icon]="isOverlayOpen(rowData.id) ? 'pi pi-eye-slash' : 'pi pi-eye'"
+              [severity]="isOverlayOpen(rowData.id) ? 'warning' : 'info'"
+              size="small"
+              (click)="toggleOverlay(rowData, overlay, $event)"
+              [id]="'btn-' + level + '-' + rowData.id">
+            </p-button>
+            
+            <!-- Overlay panel with unique reference -->
+            <p-overlayPanel 
+              #overlay
+              [dismissable]="true"
+              [showCloseIcon]="true"
+              [id]="'overlay-' + level + '-' + rowData.id"
+              (onHide)="openOverlays.delete(rowData.id)">
+              <ng-template pTemplate="content">
+                <div class="overlay-content">
+                  <h6>{{rowData.name}} - Details</h6>
+                  <app-data-table 
+                    [data]="getSubData(rowData.id)"
+                    [level]="getNextLevel()"
+                    [parentId]="rowData.id">
+                  </app-data-table>
+                </div>
+              </ng-template>
+            </p-overlayPanel>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td [attr.colspan]="getColumns().length">
+          No data found.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
