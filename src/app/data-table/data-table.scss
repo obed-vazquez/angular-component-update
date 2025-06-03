@@ -17,16 +17,42 @@
   max-height: 400px;
   overflow: auto;
   padding: 1rem;
+  
+  h6 {
+    margin: 0 0 1rem 0;
+    color: #007ad9;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+  }
+  
+  // Nested tables should be smaller
+  .data-table-container {
+    padding: 0.5rem;
+    
+    h4, h5 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+  }
 }
 
 // Ensure overlay panel is visible and properly styled
 :host ::ng-deep {
   .p-overlaypanel {
     z-index: 1000 !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    border: 1px solid #ddd !important;
+    border-radius: 6px !important;
   }
   
   .p-overlaypanel-content {
-    padding: 0.5rem !important;
+    padding: 0 !important;
+  }
+  
+  .p-overlaypanel-close {
+    top: 8px !important;
+    right: 8px !important;
   }
 }

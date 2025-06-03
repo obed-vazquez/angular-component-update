@@ -20,26 +20,28 @@
       <tr>
         <td *ngFor="let col of getColumns()">
           <span *ngIf="col.field !== 'actions' && col.field !== 'price'">{{rowData[col.field]}}</span>
-          <span *ngIf="col.field === 'price'">\${{rowData[col.field]}}</span>
+          <span *ngIf="col.field === 'price'">${{rowData[col.field]}}</span>
           
           <div *ngIf="col.field === 'actions' && hasSubData(rowData)" class="action-cell">
             <p-button 
-              label="View Details" 
-              icon="pi pi-eye" 
-              severity="info"
+              [label]="isOverlayOpen(rowData.id) ? 'Hide Details' : 'View Details'"
+              [icon]="isOverlayOpen(rowData.id) ? 'pi pi-eye-slash' : 'pi pi-eye'"
+              [severity]="isOverlayOpen(rowData.id) ? 'warning' : 'info'"
               size="small"
-              (click)="showDetails(rowData, $event)"
+              (click)="toggleOverlay(rowData, overlay, $event)"
               [id]="'btn-' + level + '-' + rowData.id">
             </p-button>
             
-            <!-- Overlay panel for this specific row -->
+            <!-- Overlay panel with unique reference -->
             <p-overlayPanel 
-              #overlayRef
+              #overlay
               [dismissable]="true"
               [showCloseIcon]="true"
-              [id]="'overlay-' + level + '-' + rowData.id">
+              [id]="'overlay-' + level + '-' + rowData.id"
+              (onHide)="openOverlays.delete(rowData.id)">
               <ng-template pTemplate="content">
                 <div class="overlay-content">
+                  <h6>{{rowData.name}} - Details</h6>
                   <app-data-table 
                     [data]="getSubData(rowData.id)"
                     [level]="getNextLevel()"
