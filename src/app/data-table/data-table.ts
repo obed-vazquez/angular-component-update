@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../services/data';
 import { ProductGroup, ProductItem, ProductDetail } from '../models/product.interface';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { OverlayPanel } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'app-data-table',
@@ -13,10 +14,12 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
   templateUrl: './data-table.html',
   styleUrl: './data-table.scss'
 })
-export class DataTableComponent implements OnInit {
+export class DataTableComponent implements OnInit, AfterViewInit {
   @Input() data: any[] = [];
   @Input() level: string = 'group'; // 'group', 'item', or 'detail'
   @Input() parentId: number | null = null;
+
+  @ViewChildren('overlayRef') overlayPanels!: QueryList<OverlayPanel>;
 
   allData: ProductGroup[] = [];
   displayData: any[] = [];
@@ -34,6 +37,10 @@ export class DataTableComponent implements OnInit {
     } else {
       this.displayData = this.data;
     }
+  }
+
+  ngAfterViewInit() {
+    // ViewChildren are available here
   }
 
   getSubData(id: number): any[] {
@@ -81,5 +88,23 @@ export class DataTableComponent implements OnInit {
       return rowData.details && rowData.details.length > 0;
     }
     return false;
+  }
+
+  showDetails(rowData: any, event: Event): void {
+    // Find the overlay panel for this specific row
+    const rowIndex = this.displayData.findIndex(item => item.id === rowData.id);
+    
+    // Only count rows that have sub data for overlay panel indexing
+    let overlayIndex = 0;
+    for (let i = 0; i < rowIndex; i++) {
+      if (this.hasSubData(this.displayData[i])) {
+        overlayIndex++;
+      }
+    }
+    
+    const overlayPanelsArray = this.overlayPanels.toArray();
+    if (overlayPanelsArray[overlayIndex]) {
+      overlayPanelsArray[overlayIndex].toggle(event);
+    }
   }
 }

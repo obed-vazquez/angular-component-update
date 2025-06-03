@@ -7,9 +7,26 @@
   }
 }
 
+.action-cell {
+  position: relative;
+}
+
 .overlay-content {
   min-width: 600px;
   max-width: 800px;
   max-height: 400px;
   overflow: auto;
+  padding: 1rem;
+}
+
+// Ensure overlay panel is visible and properly styled
+:host ::ng-deep {
+  .p-overlaypanel {
+    z-index: 1000 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+  }
+  
+  .p-overlaypanel-content {
+    padding: 0.5rem !important;
+  }
 }

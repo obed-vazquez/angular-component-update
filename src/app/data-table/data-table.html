@@ -22,24 +22,31 @@
           <span *ngIf="col.field !== 'actions' && col.field !== 'price'">{{rowData[col.field]}}</span>
           <span *ngIf="col.field === 'price'">\${{rowData[col.field]}}</span>
           
-          <div *ngIf="col.field === 'actions' && hasSubData(rowData)">
+          <div *ngIf="col.field === 'actions' && hasSubData(rowData)" class="action-cell">
             <p-button 
               label="View Details" 
               icon="pi pi-eye" 
               severity="info"
               size="small"
-              (onClick)="op.toggle($event)"
-              #btn>
+              (click)="showDetails(rowData, $event)"
+              [id]="'btn-' + level + '-' + rowData.id">
             </p-button>
             
-            <p-overlayPanel #op>
-              <div class="overlay-content">
-                <app-data-table 
-                  [data]="getSubData(rowData.id)"
-                  [level]="getNextLevel()"
-                  [parentId]="rowData.id">
-                </app-data-table>
-              </div>
+            <!-- Overlay panel for this specific row -->
+            <p-overlayPanel 
+              #overlayRef
+              [dismissable]="true"
+              [showCloseIcon]="true"
+              [id]="'overlay-' + level + '-' + rowData.id">
+              <ng-template pTemplate="content">
+                <div class="overlay-content">
+                  <app-data-table 
+                    [data]="getSubData(rowData.id)"
+                    [level]="getNextLevel()"
+                    [parentId]="rowData.id">
+                  </app-data-table>
+                </div>
+              </ng-template>
             </p-overlayPanel>
           </div>
         </td>
